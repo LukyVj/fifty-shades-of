@@ -1,4 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald);
+@import url(normalize.css);
+/*------------------
+
+  RESET & BASE
+
+-------------------*/
 html, body {
   width: 100%;
   height: 100%;
@@ -13,13 +19,36 @@ html, body {
   box-sizing: border-box;
 }
 
-.zone {
-  width: 100%;
-  height: 100%;
-  float: left;
-  position: relative;
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+/*------------------
+
+  CONTENT STYLE 
+
+-------------------*/
+nav {
+  position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
+  z-index: 12;
+  color: #FFF;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav ul li {
+  padding: 0;
+  margin: 1em;
+}
+nav a {
+  color: #FFF;
+  text-decoration: none;
+  font-size: 2em;
 }
 
 header {
@@ -36,48 +65,75 @@ header {
   line-height: 32px;
 }
 
-span {
-  border-bottom: 0px solid currentColor;
-  transition: border .1s ease;
-  cursor: pointer;
-}
-span:hover {
-  opacity: .8;
-}
-span:focus {
-  outline: none;
-  border-width: 3px;
-}
-
-.cf {
-  display: table;
-}
-.cf:before, .cf:after {
-  content: '';
-  display: table;
-  *zoom: 1;
-}
-
-.c {
-  width: 2vw;
-  height: 100vh;
-  float: left;
-  position: relative;
-  z-index: 0;
-  transition: background .3s ease;
-  cursor: pointer;
-*/
-}
-.c.expanded {
-  width: 100vw;
-  height: 92vh;
+footer {
+  display: block;
+  width: 100%;
+  text-align: center;
   position: absolute;
-  left: 0;
   z-index: 10;
-  transition: all .3s ease;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  color: #fff;
 }
-.c.bigger {
-  width: 2.0408vw;
+footer a {
+  color: currentColor;
+}
+
+.helpzone {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 11;
+  width: 680px;
+  min-height: 400px;
+  height: auto;
+  background: #eff0f2;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.6);
+  transition: -webkit-transform .3s ease, box-shadow 0s ease, opacity .2s ease;
+  transition: transform .3s ease, box-shadow 0s ease, opacity .2s ease;
+  overflow: hidden;
+}
+.helpzone header {
+  float: left;
+  width: calc(100% + 50px);
+  min-height: 60px;
+  margin-left: 0;
+  background: #e1e3e7;
+  position: relative;
+  line-height: 60px;
+  box-shadow: inset 0 1px 1px white, inset 0 -1px 0px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid white;
+  text-shadow: none;
+  margin-top: 5px;
+}
+.helpzone header h2 {
+  text-shadow: none;
+  color: #333;
+  padding: 0;
+  margin: 0;
+}
+.helpzone ul {
+  float: left;
+  font-family: Helvetica, sans-serif;
+  letter-spacing: 1px;
+  list-style: decimal;
+  padding: 0 25px;
+  font-size: .9rem;
+}
+.helpzone.off-screen {
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+.helpzone.on-screen {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
 .colors {
@@ -104,17 +160,73 @@ span:focus {
   border-bottom: 2px solid currentColor;
 }
 
-footer {
-  display: block;
+.zone {
   width: 100%;
-  text-align: center;
-  position: absolute;
-  z-index: 10;
-  bottom: 0;
+  height: 100%;
+  float: left;
+  position: relative;
+  top: 0;
   left: 0;
-  padding: 1em;
-  color: #fff;
 }
-footer a {
-  color: currentColor;
+
+span {
+  border-bottom: 0px solid currentColor;
+  transition: border .1s ease;
+  cursor: pointer;
+}
+span:hover {
+  opacity: .8;
+}
+span:focus {
+  outline: none;
+  border-width: 3px;
+}
+
+/*------------------
+
+  GENERIC CLASSES
+
+-------------------*/
+.c {
+  width: 2vw;
+  height: 100vh;
+  float: left;
+  position: relative;
+  z-index: 0;
+  transition: background .3s ease;
+  cursor: pointer;
+}
+.c.expanded {
+  width: 100vw;
+  height: 92vh;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  transition: all .3s ease;
+}
+.c.bigger {
+  width: 2.0408vw;
+}
+
+/*------------------
+
+  CLASSES
+
+-------------------*/
+.cf {
+  display: table;
+}
+.cf:before, .cf:after {
+  content: '';
+  display: table;
+  *zoom: 1;
+}
+
+img.small {
+  max-width: 100px;
+  float: left;
+}
+
+li span {
+  float: left;
 }
