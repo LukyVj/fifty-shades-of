@@ -4,7 +4,7 @@
 
   RESET & BASE
 
--------------------*/
+  -------------------*/
 html, body {
   width: 100%;
   height: 100%;
@@ -28,7 +28,7 @@ ul {
 
   CONTENT STYLE 
 
--------------------*/
+  -------------------*/
 nav {
   position: absolute;
   top: 0;
@@ -126,6 +126,9 @@ footer a {
   box-shadow: inset 0 1px 0 white, inset 0 -1px 0px rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+.helpzone p {
+  text-align: center;
+}
 .helpzone ul {
   float: left;
   letter-spacing: 1px;
@@ -199,7 +202,7 @@ span:focus {
 
   GENERIC CLASSES
 
--------------------*/
+  -------------------*/
 .c {
   width: 2vw;
   height: 100vh;
@@ -211,7 +214,7 @@ span:focus {
 }
 .c.expanded {
   width: 100vw;
-  height: 92vh;
+  height: 86vh;
   position: absolute;
   left: 0;
   z-index: 10;
@@ -225,7 +228,7 @@ span:focus {
 
   CLASSES
 
--------------------*/
+  -------------------*/
 .cf {
   display: table;
 }

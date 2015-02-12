@@ -4,7 +4,7 @@
 
   RESET & BASE
 
--------------------*/
+  -------------------*/
 
 
   html, body{
@@ -31,7 +31,7 @@
 
   CONTENT STYLE 
 
--------------------*/
+  -------------------*/
 
   nav{
     position: absolute;
@@ -139,6 +139,10 @@
       }
     }
 
+    p{
+      text-align: center;
+    }
+
     ul{
       float: left;
       letter-spacing: 1px;
@@ -216,7 +220,7 @@
 
   GENERIC CLASSES
 
--------------------*/
+  -------------------*/
 
   .c{
     width: 2vw;
@@ -229,7 +233,7 @@
 
     &.expanded{
       width: 100vw;
-      height: 92vh;
+      height: 86vh;
       position: absolute;
       left: 0;
       z-index: 10;
@@ -246,7 +250,7 @@
 
   CLASSES
 
--------------------*/
+  -------------------*/
 
   .cf{
     display: table;
@@ -257,11 +261,11 @@
     }
   }
 
-img.small{
-  max-width: 100px;
-  float: left;
-}
+  img.small{
+    max-width: 100px;
+    float: left;
+  }
 
-li span{
-  float: left;
-}
+  li span{
+    float: left;
+  }
