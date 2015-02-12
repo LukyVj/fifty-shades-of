@@ -89,20 +89,15 @@ $(function(){
           })
         }
   // Place the color first, then the zone to apply it
-  fiftyShadesOf('#000000','.canvas')
 
 
   var colors = $('span[contenteditable]')
   var evt = 'keyup';
 
-  colors.empty().append('000000')
-
   colors.on(evt, function(){
     var $val = $(this).text();
-    fiftyShadesOf($val,'.canvas')
-    giveColor()
+    window.location.hash = $val;
   })
-  giveColor()
 
   function expand(){
     $('.c').on('click', function(){
@@ -136,14 +131,20 @@ $(function(){
 
 
   function urlToApp(){
-    if (window.location.href.indexOf("#") > -1) {
-      var colors = $('span[contenteditable]')
-      var str= window.location.href;
-      var str = str.split("#")[1];
-      colors.empty().append(str)
+
+    var str = window.location.hash.substring(1, 7);
+
+    var colors = $('span[contenteditable]');
+    var text = colors.text();
+
+    if (str) {
       fiftyShadesOf(str, '.canvas')
       giveColor();
       expand();
+      brightOrDark('.c:nth-child(2)');
+      if (text != str) {
+        colors.text(str);
+      }
     }
 
   }
@@ -169,16 +170,11 @@ $(function(){
 }
 
 urlToApp();
-setTimeout(function(){
-  brightOrDark('.c:nth-child(2)');
-}, 50)
-$('*').on('keyup', function(){
-  brightOrDark('.c:nth-child(2)');
-});
-$('*').on('click', function(){
-  brightOrDark('.c:nth-child(2)');
-});
-
+$(window).on('hashchange', urlToApp);
+var str = window.location.hash.substring(1, 7);
+if (!str) {
+  window.location.hash = '000000';
+}
 
 function toggleHelp(){
   var trig = $('a[data-toggle*="help"]');
