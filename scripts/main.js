@@ -129,7 +129,6 @@ $(function(){
     if(word != '') {
       prompt('copy:',word);
     }
-    range.collapse();
     e.stopPropagation();
 
 
@@ -162,11 +161,9 @@ $(function(){
     var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
 
     if (luma > 40) {
-     console.log(' Too bright ! - ' + luma + '-' + c + ' - ' + cm + ' - ' + ct);
      $('header, footer').attr('style','color: #000 !important;text-shadow: 0 1px 0 rgba(255,255,255,.4)!important')
    }
    else{
-    console.log(' Too Dark !')
     $('header, footer').attr('style','color: #fff !important;text-shadow: 0 1px 0 rgba(0,0,0,.6)!important')
   }
 }
@@ -182,5 +179,21 @@ $('*').on('click', function(){
   brightOrDark('.c:nth-child(2)');
 });
 
+
+function toggleHelp(){
+  var trig = $('a[data-toggle*="help"]');
+  trig.on('click',  function(e){
+    e.preventDefault();
+
+    if($('.helpzone').hasClass('off-screen')){
+      $('.helpzone').removeClass('off-screen').addClass('on-screen')
+    }
+    else{
+       $('.helpzone').removeClass('on-screen').addClass('off-screen')
+    }
+  });
+}
+
+toggleHelp()
 
 })

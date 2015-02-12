@@ -1,136 +1,250 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald);
+@import 'normalize.css';
+/*------------------
 
-html, body{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "Oswald", Helvetica, sans-serif;
-  letter-spacing: 2px;
-}
+  RESET & BASE
 
-*{
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-.zone{
-  width: 100%;
-  height: 100%;
-  float: left;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-header{
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  color: #eff0f2;
-  text-shadow: 0 1px 0 rgba(black, .6);
-  text-align: center;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-
-  line-height: 32px; 
-}
+-------------------*/
 
 
-
-span{
-  border-bottom: 0px solid currentColor;
-  transition: border .1s ease;
-  cursor: pointer;
-  &:hover{
-    opacity: .8;
-  }
-  &:focus{
-    outline: none; 
-    border-width: 3px;
-  }
-}
-
-.cf{
-  display: table;
-  &:before,&:after{
-    content: '';
-    display: table;
-    *zoom: 1;
-  }
-}
-.c{
-  width: 2vw;
-  height: 100vh;
-  float: left;
-  position: relative;
-  z-index: 0;
-  transition: background .3s ease;
-  cursor: pointer;
-  
-  &.expanded{
-    width: 100vw;
-    height: 92vh;
-    position: absolute;
-    left: 0;
-    z-index: 10;
-    transition: all .3s ease;
-  }
-  
-  &.bigger{
-    width: 2.0408vw;
-  }
-  /*&:hover{
-  width: 8vw; 
-
-  &~.c:not(:hover){
-  width: calc(2vw - (2vw/500));
-  margin-left: -(1vw/49);
-}
-}*/
-
-}
-
-.colors{
-  margin-top: 1em;
-  span{
-    clear: both;
-    display: block;
-    float: left;
+  html, body{
     width: 100%;
-    text-align: left;
-
-    &:nth-child(1){
-      width: 100%;
-      min-height: 60px;
-      margin-bottom: 1em;
-    }
-
-    &:nth-child(2):before{
-      content: 'Hexadecimal :';
-      border-bottom: 2px solid currentColor;
-    }
-    &:nth-child(3):before{
-      content: 'RGB :';
-      border-bottom: 2px solid currentColor;
-    } 
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Oswald", Helvetica, sans-serif;
+    letter-spacing: 2px;
   }
+
+  *{
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+  }
+
+  ul{
+    padding: 0;
+    margin: 0;
+  }
+
+
+/*------------------
+
+  CONTENT STYLE 
+
+-------------------*/
+
+  nav{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 12;
+    color: #FFF;
+
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li{
+        padding: 0;
+        margin: 1em;
+      }
+    }
+
+    a{
+      color: #FFF;
+      text-decoration: none;
+      font-size: 2em;
+    }
+  }
+
+  header{
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    color: #eff0f2;
+    text-shadow: 0 1px 0 rgba(black, .6);
+    text-align: center;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    line-height: 32px; 
+  }
+
+
+
+  footer{
+    display: block;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    color: #fff;
+
+    a{
+      color: currentColor;
+    }
+  }
+
+  .helpzone{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    z-index: 11;
+    width: 680px;
+    min-height: 400px;
+    height: auto;
+    background: #eff0f2;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 999px rgba(0,0,0,.6);
+    transition: transform .3s ease, box-shadow 0s ease, opacity .2s ease;
+    overflow: hidden;
+
+    header{
+      float: left;
+      width: calc(100% + 50px);
+      min-height: 60px;
+      margin-left: 0;
+      background: darken(#eff0f2, 5%);
+      position: relative;
+      line-height: 60px;
+      box-shadow: inset 0 1px 1px rgba(white, 1), inset 0 -1px 0px rgba(black, .1);
+      border-bottom: 1px solid rgba(white, 1);
+      text-shadow: none;
+      margin-top: 5px;
+
+      h2{
+        text-shadow: none;
+        color: #333;
+        padding: 0;margin: 0;
+      }
+    }
+
+    ul{
+      float: left;
+      font-family: Helvetica, sans-serif;
+      letter-spacing: 1px;
+      list-style: decimal;
+      padding: 0 25px;
+      font-size: .9rem;
+    }
+
+    // Modal statements
+    &.off-screen{
+      transform: translate(-50%,-50%) scale(0);
+      opacity: 0;
+    }
+    &.on-screen{
+      transform: translate(-50%,-50%) scale(1);
+      opacity: 1;
+    }
+  }
+
+  .colors{
+    margin-top: 1em;
+    span{
+      clear: both;
+      display: block;
+      float: left;
+      width: 100%;
+      text-align: left;
+
+      &:nth-child(1){
+        width: 100%;
+        min-height: 60px;
+        margin-bottom: 1em;
+      }
+
+      &:nth-child(2):before{
+        content: 'Hexadecimal :';
+        border-bottom: 2px solid currentColor;
+      }
+      &:nth-child(3):before{
+        content: 'RGB :';
+        border-bottom: 2px solid currentColor;
+      } 
+    }
+  }
+
+  .zone{
+    width: 100%;
+    height: 100%;
+    float: left;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  span{
+    border-bottom: 0px solid currentColor;
+    transition: border .1s ease;
+    cursor: pointer;
+    &:hover{
+      opacity: .8;
+    }
+    &:focus{
+      outline: none; 
+      border-width: 3px;
+    }
+  }
+
+/*------------------
+
+  GENERIC CLASSES
+
+-------------------*/
+
+  .c{
+    width: 2vw;
+    height: 100vh;
+    float: left;
+    position: relative;
+    z-index: 0;
+    transition: background .3s ease;
+    cursor: pointer;
+
+    &.expanded{
+      width: 100vw;
+      height: 92vh;
+      position: absolute;
+      left: 0;
+      z-index: 10;
+      transition: all .3s ease;
+    }
+
+    &.bigger{
+      width: 2.0408vw;
+    }
+
+  }
+
+/*------------------
+
+  CLASSES
+
+-------------------*/
+
+  .cf{
+    display: table;
+    &:before,&:after{
+      content: '';
+      display: table;
+      *zoom: 1;
+    }
+  }
+
+img.small{
+  max-width: 100px;
+  float: left;
 }
 
-footer{
-  display: block;
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  z-index: 10;
-  bottom: 0;
-  left: 0;
-  padding: 1em;
-  color: #fff;
-  
-  a{
-    color: currentColor;
-  }
+li span{
+  float: left;
 }
