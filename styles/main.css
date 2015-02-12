@@ -66,14 +66,7 @@ span:focus {
   z-index: 0;
   transition: background .3s ease;
   cursor: pointer;
-  /*&:hover{
-  width: 8vw; 
-
-  &~.c:not(:hover){
-  width: calc(2vw - (2vw/500));
-  margin-left: -(1vw/49);
-}
-}*/
+*/
 }
 .c.expanded {
   width: 100vw;
