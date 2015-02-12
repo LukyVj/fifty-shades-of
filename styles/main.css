@@ -98,6 +98,7 @@ footer a {
   transition: transform .3s ease, box-shadow 0s ease, opacity .2s ease;
   overflow: hidden;
   font-family: Helvetica, sans-serif;
+  line-height: 22px;
 }
 .helpzone header {
   float: left;
@@ -131,7 +132,7 @@ footer a {
   list-style: decimal;
   padding: 0 25px;
   font-size: .9rem;
-  min-height: 120px;
+  min-height: 130px;
 }
 .helpzone.off-screen {
   -webkit-transform: translate(-50%, -50%) scale(0);
