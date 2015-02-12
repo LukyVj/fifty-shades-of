@@ -1,0 +1,128 @@
+@import 'normalize.css';
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Oswald", Helvetica, sans-serif;
+  letter-spacing: 2px;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+.zone {
+  width: 100%;
+  height: 100%;
+  float: left;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+header {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  color: #eff0f2;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  line-height: 32px;
+}
+
+span {
+  border-bottom: 0px solid currentColor;
+  transition: border .1s ease;
+  cursor: pointer;
+}
+span:hover {
+  opacity: .8;
+}
+span:focus {
+  outline: none;
+  border-width: 3px;
+}
+
+.cf {
+  display: table;
+}
+.cf:before, .cf:after {
+  content: '';
+  display: table;
+  *zoom: 1;
+}
+
+.c {
+  width: 2vw;
+  height: 100vh;
+  float: left;
+  position: relative;
+  z-index: 0;
+  transition: background .3s ease;
+  cursor: pointer;
+  /*&:hover{
+  width: 8vw; 
+
+  &~.c:not(:hover){
+  width: calc(2vw - (2vw/500));
+  margin-left: -(1vw/49);
+}
+}*/
+}
+.c.expanded {
+  width: 100vw;
+  height: 92vh;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  transition: all .3s ease;
+}
+.c.bigger {
+  width: 2.0408vw;
+}
+
+.colors {
+  margin-top: 1em;
+}
+.colors span {
+  clear: both;
+  display: block;
+  float: left;
+  width: 100%;
+  text-align: left;
+}
+.colors span:nth-child(1) {
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: 1em;
+}
+.colors span:nth-child(2):before {
+  content: 'Hexadecimal :';
+  border-bottom: 2px solid currentColor;
+}
+.colors span:nth-child(3):before {
+  content: 'RGB :';
+  border-bottom: 2px solid currentColor;
+}
+
+footer {
+  display: block;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  color: #fff;
+}
+footer a {
+  color: currentColor;
+}
