@@ -118,4 +118,16 @@ $(function(){
   });
 
 
+  function urlToApp(){
+    var colors = $('span[contenteditable]')
+    var str= window.location.href;
+    var str = str.split("#")[1];
+    colors.empty().append(str)
+    fiftyShadesOf(str, '.canvas')
+    giveColor();
+  }
+
+  urlToApp();
+
+
 })
