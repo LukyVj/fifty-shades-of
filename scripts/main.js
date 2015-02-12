@@ -12,6 +12,12 @@ $(function(){
   //
   // Codes are mostly from http://jsbin.com/oqaza4/2/edit?html,js,output
   // & http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+  setTimeout(function(){
+    $('#twitter-widget-0').css({
+      'transform':'scale(.8)',
+      'width':'82px',
+      'margin-top':'.5em'});
+  }, 400);
 
 
   function fiftyShadesOf($hex,$where){
@@ -31,49 +37,49 @@ $(function(){
     } 
 
     var r = decode($hex).replace('rgb(','').split(',')[0]%256;
-    var g = decode($hex).replace('rgb(','').split(',')[1]%256;
-    var b = decode($hex).replace('rgb(','').replace(')','').split(',')[2]%256;
+      var g = decode($hex).replace('rgb(','').split(',')[1]%256;
+        var b = decode($hex).replace('rgb(','').replace(')','').split(',')[2]%256;
 
-    var str="";
-    for(var i=0;i<50;i++)
-    {
-      r+=4;
-      g+=4;
-      b+=4;
-      str+="<div class='c' id='shade_"+(i+1)+"' style='background-color:rgb("+r+","+g+","+b+")'></div>"; 
-    }
-    $($where).html(str);
-  }
-
-
-
-  function reveal($i){
-
-    function rgb2hex(rgb){
-      rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-      return (rgb && rgb.length === 4) ? "#" +
-        ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
-        ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
-        ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
-    }
+        var str="";
+        for(var i=0;i<50;i++)
+        {
+          r+=4;
+          g+=4;
+          b+=4;
+          str+="<div class='c' id='shade_"+(i+1)+"' style='background-color:rgb("+r+","+g+","+b+")'></div>"; 
+        }
+        $($where).html(str);
+      }
 
 
-    var $twitter = $('a[href*="twitter"]');
-    var $sample = $('.colors .sample');
-    var $hex = $('.colors .hex');
-    var $rgb = $('.colors .rgb'); 
 
-    $twitter.css('color', $i)
-    $sample.css('background-color', $i)
-    $rgb.empty().append(' '+$i)
-    $hex.empty().append(' '+rgb2hex($i)) 
-  }
+      function reveal($i){
 
-  function giveColor(){
-    $('.c').on('mouseover', function(){ 
-      reveal($(this).css('background-color'))
-    })
-  }
+        function rgb2hex(rgb){
+          rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+            return (rgb && rgb.length === 4) ? "#" +
+            ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+            ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+            ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+          }
+
+
+          var $twitter = $('a[href*="twitter"], a[href*="github"]');
+          var $sample = $('.colors .sample');
+          var $hex = $('.colors .hex');
+          var $rgb = $('.colors .rgb'); 
+
+          $twitter.css('color', $i)
+          $sample.css('background-color', $i)
+          $rgb.empty().append(' '+$i)
+          $hex.empty().append(' '+rgb2hex($i)) 
+        }
+
+        function giveColor(){
+          $('.c').on('mouseover', function(){ 
+            reveal($(this).css('background-color'))
+          })
+        }
   // Place the color first, then the zone to apply it
   fiftyShadesOf('#000000','.canvas')
 
@@ -89,7 +95,8 @@ $(function(){
   })
   giveColor()
 
-  $('.c').on('click', function(){
+  function expand(){
+    $('.c').on('click', function(){
     if($(this).hasClass('expanded')){
       $(this).removeClass('expanded')
       $('*').removeClass('bigger')
@@ -99,6 +106,8 @@ $(function(){
       $('.c').not($(this)).removeClass('expanded').addClass('bigger')
     }
   });
+  }
+  expand()
 
 
   var p = $('.colors .hex, .colors .rgb');
@@ -125,6 +134,7 @@ $(function(){
     colors.empty().append(str)
     fiftyShadesOf(str, '.canvas')
     giveColor();
+    expand();
   }
 
   urlToApp();
