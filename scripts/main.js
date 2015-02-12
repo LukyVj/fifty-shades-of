@@ -125,6 +125,7 @@ $(function(){
       prompt('copy:',word);
     }
     e.stopPropagation();
+  expand()
 
 
   });
@@ -162,11 +163,13 @@ $(function(){
     var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
 
     if (luma > 40) {
-     $('header, footer, [data-toggle], a').attr('style','color: #000 !important;text-shadow: 0 1px 0 rgba(255,255,255,.4)!important')
+     $('header, footer, [data-toggle], a:not(.helpzone a)').attr('style','color: #000 !important;text-shadow: 0 1px 0 rgba(255,255,255,.4)!important')
    }
    else{
-    $('header, footer, [data-toggle], a').attr('style','color: #fff !important;text-shadow: 0 1px 0 rgba(0,0,0,.6)!important')
+    $('header, footer, [data-toggle], a:not(.helpzone a)').attr('style','color: #fff !important;text-shadow: 0 1px 0 rgba(0,0,0,.6)!important')
   }
+    expand()
+
 }
 
 urlToApp();
@@ -188,6 +191,8 @@ function toggleHelp(){
        $('.helpzone').removeClass('on-screen').addClass('off-screen')
     }
   });
+    expand()
+
 }
 
 toggleHelp()

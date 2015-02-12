@@ -97,6 +97,7 @@ footer a {
   transition: -webkit-transform .3s ease, box-shadow 0s ease, opacity .2s ease;
   transition: transform .3s ease, box-shadow 0s ease, opacity .2s ease;
   overflow: hidden;
+  font-family: Helvetica, sans-serif;
 }
 .helpzone header {
   float: left;
@@ -117,13 +118,19 @@ footer a {
   padding: 0;
   margin: 0;
 }
+.helpzone header:not(:first-child) {
+  min-height: 40px;
+  line-height: 40px;
+  box-shadow: inset 0 1px 0 white, inset 0 -1px 0px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 .helpzone ul {
   float: left;
-  font-family: Helvetica, sans-serif;
   letter-spacing: 1px;
   list-style: decimal;
   padding: 0 25px;
   font-size: .9rem;
+  min-height: 120px;
 }
 .helpzone.off-screen {
   -webkit-transform: translate(-50%, -50%) scale(0);
@@ -134,6 +141,9 @@ footer a {
   -webkit-transform: translate(-50%, -50%) scale(1);
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
+}
+.helpzone a {
+  color: dodgerblue !important;
 }
 
 .colors {

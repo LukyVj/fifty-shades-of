@@ -106,6 +106,8 @@
     box-shadow: 0 0 0 999px rgba(0,0,0,.6);
     transition: transform .3s ease, box-shadow 0s ease, opacity .2s ease;
     overflow: hidden;
+    font-family: Helvetica, sans-serif;
+
 
     header{
       float: left;
@@ -125,15 +127,22 @@
         color: #333;
         padding: 0;margin: 0;
       }
+
+      &:not(:first-child){
+        min-height: 40px;
+        line-height: 40px;
+        box-shadow: inset 0 1px 0 rgba(white, 1), inset 0 -1px 0px rgba(black, .1);
+        border-top: 1px solid rgba(white, .1);
+      }
     }
 
     ul{
       float: left;
-      font-family: Helvetica, sans-serif;
       letter-spacing: 1px;
       list-style: decimal;
       padding: 0 25px;
       font-size: .9rem;
+      min-height: 120px;
     }
 
     // Modal statements
@@ -144,6 +153,10 @@
     &.on-screen{
       transform: translate(-50%,-50%) scale(1);
       opacity: 1;
+    }
+
+    a{
+      color: dodgerblue !important;
     }
   }
 
