@@ -48,7 +48,7 @@ $size-toolbox: 100px;
     right: 0;
     z-index: 12;
     color: #FFF;
-
+    margin: .5em;
     ul{
       list-style: none;
       padding: 0;
@@ -287,6 +287,7 @@ $size-toolbox: 100px;
        color: #fff;
        text-decoration: none;
        border-bottom-left-radius: 5px;
+       margin: .5em;
 
        span{
         font-size: 1.4em;

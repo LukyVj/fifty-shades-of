@@ -93,6 +93,7 @@ nav {
   right: 0;
   z-index: 12;
   color: #FFF;
+  margin: .5em;
 }
 nav ul {
   list-style: none;
@@ -312,6 +313,7 @@ span:focus {
   color: #fff;
   text-decoration: none;
   border-bottom-left-radius: 5px;
+  margin: .5em;
 }
 .toolbox footer a span {
   font-size: 1.4em;
