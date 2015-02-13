@@ -64,7 +64,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: Helvetica, sans-serif;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 body:not(.mobile) {
@@ -160,6 +160,7 @@ footer a {
   overflow: hidden;
   font-family: Helvetica, sans-serif;
   line-height: 22px;
+  letter-spacing: 1px;
 }
 .helpzone header {
   float: left;
@@ -186,9 +187,6 @@ footer a {
   line-height: 40px;
   box-shadow: inset 0 1px 0 white, inset 0 -1px 0px rgba(0, 0, 0, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-.helpzone p {
-  text-align: center;
 }
 .helpzone ul {
   float: left;
