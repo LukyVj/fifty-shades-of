@@ -15,66 +15,110 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-  <div class="helpzone off-screen">
-    <header>
-      <h2>There is few tricks to know</h2>
-    </header>
-    <ul>
-      <li>Enter the hexadecimal color directly in the URL : <code>http://lukyvj.github.io/fifty-shades-of/#F00000</code></li>
-      <li>Click a shade, to open it in full width.</li>
-      <li>Doubleclick the hexadecimal or rgb color values to copy them value <!-- <img src="http://puu.sh/fP2rH/065c6ff95d.gif" class="small"> --></li>
-    </ul>
+<!-- The info modal, toggled by the nav -->
+<div class="helpzone off-screen">
+  <header>
+    <h2>There is few tricks to know</h2>
+  </header>
+  <ul>
+    <li>Enter the hexadecimal color directly in the URL : <code><a href="http://lukyvj.github.io/fifty-shades-of/#F00000" class="anti">http://lukyvj.github.io/fifty-shades-of/#F00000</a></code></li>
+    <li>Click a shade, to open it in full width.</li>
+    <li>Doubleclick the hexadecimal or rgb color values to copy them value <!-- <img src="http://puu.sh/fP2rH/065c6ff95d.gif" class="small"> --></li>
+  </ul>
 
-    <header>
-      <h2>Credits</h2>
-    </header>
+  <header>
+    <h2>Credits</h2>
+  </header>
 
-    <p>The project Fifty shades of &lt;color> use <a href="http://jquery.com">jQuery</a> & a wonderful script of <a href="http://twitter.com/timpietrusky">Tim Pietrusky</a>, called <a href="https://github.com/TimPietrusky/_select">_select</a>.</p>
+  <p>The project Fifty shades of &lt;color> use <a href="http://jquery.com" class="anti">jQuery</a> & a wonderful script of <a href="http://twitter.com/timpietrusky" class="anti">Tim Pietrusky</a>, called <a href="https://github.com/TimPietrusky/_select" class="anti">_select</a>.</p>
 
-    <p>Licensed under <a href="https://github.com/LukyVj/fifty-shades-of/blob/gh-pages/Apache_License.txt">Apache 2.0</a></p>
+  <p>Licensed under <a href="https://github.com/LukyVj/fifty-shades-of/blob/gh-pages/Apache_License.txt" class="anti">Apache 2.0</a></p>
+</div>
+
+<!-- The page starts here -->
+<div class="zone">
+
+  <!-- Toolbox -->
+  <div class="toolbox off-screen">
+  <div class="toolbox--content">
+      <div class="column">
+        <p>Try those colors :</p>
+        <ul class="color-samples">
+          <li><div class="sample--red"></div></li>
+          <li><div class="sample--pink"></div></li>
+          <li><div class="sample--purple"></div></li>
+          <li><div class="sample--blue"></div></li>
+          <li><div class="sample--green"></div></li>
+          <li><div class="sample--darkpurple"></div></li>
+          <li><div class="sample--yellow"></div></li>
+          <li><div class="sample--darken-red"></div></li>
+          <li><div class="sample--darken-pink"></div></li>
+          <li><div class="sample--darken-purple"></div></li>
+          <li><div class="sample--darken-blue"></div></li>
+          <li><div class="sample--darken-green"></div></li>
+          <li><div class="sample--darken-darkpurple"></div></li>
+          <li><div class="sample--darken-yellow"></div></li>
+        </ul>
+      </div>
+       <div class="column">
+        <p>Change shades direction:</p>
+        <ul class="shades-direction">
+          <li><a href="#" data-shade-direction="right"><span class="icon-angle-double-right"></span></a></li>
+          <li><a href="#" data-shade-direction="bottom"><span class="icon-angle-double-down"></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <footer><a href="javascript:void(0)" data-toggle="toolbox"><span class="icon-cog-gear"></span></a></footer>
   </div>
 
-  <div class="zone">
-    <nav>
-      <ul>
-        <li><a href="javascript:void(0)" data-toggle="help">?</a></li>
-      </ul>
-    </nav>
-    <div class="canvas"></div>   
-    <header>
-      <h2>Fifty shades of #<span class="color-name" contenteditable>000000</span></h2> 
+  <!-- Smallest nav ever -->
+  <nav>
+    <ul>
+      <li><a href="javascript:void(0)" data-toggle="help"><span class="icon-information"></span></a></li>
+    </ul>
+  </nav>
 
-      <small>Change the 6 hexadecimal color value <span class="cf"></span> ... With an other 6 hexadecimal value.. </small>
+  <!-- Where the shades will appear -->
+  <div class="canvas to-right"></div>   
 
-      <div class="colors">
-        <span class="sample"></span>
-        <span class="hex"></span>
-        <span class="rgb"></span>
-      </div>
-    </header>
-    <footer>
-      <small>A tiny project of <a href="http://twitter.com/lukyvk">@LukyVj</a> <span class="cf"></span> Star it on <a href="https://github.com/LukyVj/fifty-shades-of">Github</a></small><span class="cf"></span>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lukyvj.github.io/fifty-shades-of/" data-via="LukyVJ" data-related="LukyVj" data-hashtags="fiftyshadesofcolor">Tweet</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    </footer>
+  <!-- And the center  content -->
+  <header>
+    <h2>Fifty shades of #<span class="color-name" contenteditable>000000</span></h2> 
 
-  </div> 
+    <small>Change the 6 hexadecimal color value <span class="cf"></span> ... With an other 6 hexadecimal value.. </small>
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <div class="colors">
+      <span class="sample"></span>
+      <span class="hex"></span>
+      <span class="rgb"></span>
+    </div>
+  </header>
 
-    ga('create', 'UA-42634383-2', 'auto');
-    ga('send', 'pageview');
-  </script>
+  <!-- A footer cuz that's so kewl -->
+  <footer>
+    <small>A tiny project of <a href="http://twitter.com/lukyvk">@LukyVj</a> - On <a href="https://github.com/LukyVj/fifty-shades-of">Github</a></small> - 
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lukyvj.github.io/fifty-shades-of/" data-via="LukyVJ" data-related="LukyVj" data-hashtags="fiftyshadesofcolor">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </footer>
+
+</div> 
+
+<!-- And yeah, I spy on you guys >:D -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42634383-2', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
-  <script src="scripts/_select.js"></script>
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/main.js"></script>
-  <!-- endbuild -->
+<script src="scripts/_select.js"></script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
 </body>
 </html>

@@ -1,5 +1,58 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 @import url(normalize.css);
+@font-face {
+  font-family: "fifty-shade-icons";
+  src: url("../fonts/fifty-shade-icons.eot");
+  src: url("../fonts/fifty-shade-icons.eot?#iefix") format("embedded-opentype"), url("../fonts/fifty-shade-icons.woff") format("woff"), url("../fonts/fifty-shade-icons.ttf") format("truetype"), url("../fonts/fifty-shade-icons.svg#fifty-shade-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+[data-icon]:before {
+  font-family: "fifty-shade-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "fifty-shade-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cog-gear:before {
+  content: "a";
+}
+
+.icon-eye:before {
+  content: "c";
+}
+
+.icon-information:before {
+  content: "d";
+}
+
+.icon-angle-double-right:before {
+  content: "b";
+}
+
+.icon-angle-double-down:before {
+  content: "e";
+}
+
 /*------------------
 
   RESET & BASE
@@ -10,8 +63,12 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: "Oswald", Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   letter-spacing: 2px;
+}
+
+body:not(.mobile) {
+  overflow: hidden;
 }
 
 * {
@@ -22,6 +79,7 @@ html, body {
 ul {
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
 /*------------------
@@ -31,7 +89,7 @@ ul {
   -------------------*/
 nav {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   z-index: 12;
   color: #FFF;
@@ -43,7 +101,7 @@ nav ul {
 }
 nav ul li {
   padding: 0;
-  margin: 1em;
+  width: 40px;
 }
 nav a {
   color: #FFF;
@@ -64,11 +122,14 @@ header {
   transform: translate(-50%, -50%);
   line-height: 32px;
 }
+header h2 {
+  font-family: "Oswald", Helvetica, sans-serif;
+}
 
 footer {
   display: block;
   width: 100%;
-  text-align: center;
+  text-align: left;
   position: absolute;
   z-index: 10;
   bottom: 0;
@@ -93,9 +154,9 @@ footer a {
   background: #eff0f2;
   padding: 25px;
   border-radius: 5px;
-  box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.6);
-  transition: -webkit-transform .3s ease, box-shadow 0s ease, opacity .2s ease;
-  transition: transform .3s ease, box-shadow 0s ease, opacity .2s ease;
+  box-shadow: 0 0 99px rgba(0, 0, 0, 0.6);
+  transition: -webkit-transform .1s ease-in, box-shadow 0S linear, opacity .6s ease-out;
+  transition: transform .1s ease-in, box-shadow 0S linear, opacity .6s ease-out;
   overflow: hidden;
   font-family: Helvetica, sans-serif;
   line-height: 22px;
@@ -161,11 +222,16 @@ footer a {
   float: left;
   width: 100%;
   text-align: left;
+  font-family: "courier new", courier, helvetica, sans-serif;
+  font-weight: 600;
 }
 .colors span:nth-child(1) {
   width: 100%;
   min-height: 60px;
   margin-bottom: 1em;
+}
+.colors span:before {
+  font-family: "Oswald", Helvetica, sans-serif;
 }
 .colors span:nth-child(2):before {
   content: 'Hexadecimal :';
@@ -174,6 +240,13 @@ footer a {
 .colors span:nth-child(3):before {
   content: 'RGB :';
   border-bottom: 2px solid currentColor;
+}
+.colors span:not(:nth-child(1)):hover:after {
+  content: 'c';
+  font-family: "fifty-shade-icons" !important;
+  position: absolute;
+  font-size: 1.2em;
+  margin-left: .2em;
 }
 
 .zone {
@@ -198,14 +271,151 @@ span:focus {
   border-width: 3px;
 }
 
+.toolbox {
+  position: absolute;
+  z-index: 11;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: #fff;
+  height: 100px;
+  transition: top 0.4s cubic-bezier(1, 0.08, 0.66, 0.81);
+  font-family: "Oswald", Helvetica, sans-serif;
+}
+.toolbox p {
+  margin: .5em;
+}
+.toolbox .toolbox--content {
+  width: 100%;
+  float: left;
+  height: 100%;
+}
+.toolbox .toolbox--content .column {
+  width: 50%;
+  float: left;
+  padding: 0 .5em;
+}
+.toolbox footer {
+  width: 100%;
+  float: right;
+  position: relative;
+  padding: 0;
+  height: 0px;
+  background: rgba(0, 0, 0, 0.6);
+}
+.toolbox footer a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  float: right;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom-left-radius: 5px;
+}
+.toolbox footer a span {
+  font-size: 1.4em;
+  line-height: 50px;
+  text-align: center;
+}
+.toolbox.off-screen {
+  top: -100px;
+}
+.toolbox.on-screen {
+  top: 0;
+}
+.toolbox .color-samples {
+  width: 100%;
+}
+.toolbox [class*="sample--"] {
+  width: calc(14% - 4px);
+  height: 22px;
+  border: 1px solid transparent;
+  margin: 1px 2px;
+  float: left;
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+  cursor: pointer;
+}
+.toolbox [class*="sample--"]:hover {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.toolbox [class*="sample--"][class*="red"] {
+  background: #FF4351;
+}
+.toolbox [class*="sample--"][class*="pink"] {
+  background: #ED4694;
+}
+.toolbox [class*="sample--"][class*="purple"] {
+  background: #7B72E9;
+}
+.toolbox [class*="sample--"][class*="blue"] {
+  background: #1B9AF7;
+}
+.toolbox [class*="sample--"][class*="green"] {
+  background: #49E845;
+}
+.toolbox [class*="sample--"][class*="yellow"] {
+  background: #FFE93B;
+}
+.toolbox [class*="sample--"][class*="darkpurple"] {
+  background: #872795;
+}
+.toolbox [class*="sample--"][class*="darken-red"] {
+  background: #85000a;
+}
+.toolbox [class*="sample--"][class*="darken-pink"] {
+  background: #6c0a38;
+}
+.toolbox [class*="sample--"][class*="darken-purple"] {
+  background: #1e1589;
+}
+.toolbox [class*="sample--"][class*="darken-blue"] {
+  background: #033152;
+}
+.toolbox [class*="sample--"][class*="darken-green"] {
+  background: #0f640c;
+}
+.toolbox [class*="sample--"][class*="darken-yellow"] {
+  background: #7d6f00;
+}
+.toolbox [class*="sample--"][class*="darken-darkpurple"] {
+  background: black;
+}
+.toolbox .shades-direction {
+  font-size: 2.8em;
+  margin-top: -10px;
+}
+
 /*------------------
 
   GENERIC CLASSES
 
   -------------------*/
-.c {
+.canvas.to-right .c {
   width: 2vw;
   height: 100vh;
+}
+.canvas.to-right .c.bigger {
+  width: 2.0408vw;
+}
+.canvas.to-right .c.expanded {
+  width: 100vw;
+  height: 86vh;
+}
+.canvas.to-bottom .c {
+  width: 100vw;
+  height: 2.1vh;
+}
+.canvas.to-bottom .c.expanded {
+  width: 100vw;
+  height: 100vh;
+}
+
+.c {
   float: left;
   position: relative;
   z-index: 0;
@@ -213,15 +423,10 @@ span:focus {
   cursor: pointer;
 }
 .c.expanded {
-  width: 100vw;
-  height: 86vh;
   position: absolute;
   left: 0;
   z-index: 10;
   transition: all .3s ease;
-}
-.c.bigger {
-  width: 2.0408vw;
 }
 
 /*------------------

@@ -1,5 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 @import 'normalize.css';
+@import 'icons.scss';
+
+$size-toolbox: 100px;
+
 /*------------------
 
   RESET & BASE
@@ -12,8 +16,12 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: "Oswald", Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     letter-spacing: 2px;
+  }
+
+  body:not(.mobile){
+    overflow: hidden;
   }
 
   *{
@@ -24,6 +32,7 @@
   ul{
     padding: 0;
     margin: 0;
+    list-style: none;
   }
 
 
@@ -35,7 +44,7 @@
 
   nav{
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
     z-index: 12;
     color: #FFF;
@@ -47,7 +56,7 @@
 
       li{
         padding: 0;
-        margin: 1em;
+        width: 40px;
       }
     }
 
@@ -71,6 +80,10 @@
     transform: translate(-50%,-50%);
 
     line-height: 32px; 
+
+    h2{
+      font-family: "Oswald", Helvetica, sans-serif;
+    }
   }
 
 
@@ -78,7 +91,7 @@
   footer{
     display: block;
     width: 100%;
-    text-align: center;
+    text-align: left;
     position: absolute;
     z-index: 10;
     bottom: 0;
@@ -103,8 +116,8 @@
     background: #eff0f2;
     padding: 25px;
     border-radius: 5px;
-    box-shadow: 0 0 0 999px rgba(0,0,0,.6);
-    transition: transform .3s ease, box-shadow 0s ease, opacity .2s ease;
+    box-shadow: 0 0 99px rgba(0,0,0,.6);
+    transition: transform .1s ease-in, box-shadow 0S linear, opacity .6s ease-out;
     overflow: hidden;
     font-family: Helvetica, sans-serif;
     line-height: 22px;
@@ -176,13 +189,17 @@
       float: left;
       width: 100%;
       text-align: left;
+      font-family: "courier new", courier, helvetica, sans-serif;
+      font-weight: 600;
 
       &:nth-child(1){
         width: 100%;
         min-height: 60px;
         margin-bottom: 1em;
       }
-
+      &:before{
+        font-family: "Oswald", Helvetica, sans-serif;
+      }
       &:nth-child(2):before{
         content: 'Hexadecimal :';
         border-bottom: 2px solid currentColor;
@@ -190,6 +207,14 @@
       &:nth-child(3):before{
         content: 'RGB :';
         border-bottom: 2px solid currentColor;
+      }
+
+      &:not(:nth-child(1)):hover:after{
+        content:'c';
+        font-family: "fifty-shade-icons" !important;
+        position: absolute;
+        font-size: 1.2em;
+        margin-left: .2em;
       } 
     }
   }
@@ -216,35 +241,188 @@
     }
   }
 
+  .toolbox{
+    position: absolute;
+    z-index: 11;
+    background: rgba(0,0,0,.6);
+    width: 100%;
+    top: 0;
+    left: 0;
+    color: #fff;
+    height: $size-toolbox;
+    transition: top .4s cubic-bezier(1, .08, .66, .81);
+    font-family: "Oswald", Helvetica, sans-serif;
+    
+    p{
+      margin: .5em;
+    }
+    
+    .toolbox--content{
+      width: 100%;
+      float: left;
+      height: 100%;
+
+      .column{
+        width: 50%;
+        float: left;
+        padding: 0 .5em;
+      }
+    }
+
+
+    
+    footer{
+      width: 100%;
+      float: right;
+      position: relative;
+      padding: 0;
+      height: 0px;
+      background: rgba(0,0,0,.6);
+
+
+      a{
+       display: block;
+       width: 40px;
+       height: 40px;
+       float: right;
+       text-align: center;
+       line-height: 40px;
+       color: #fff;
+       text-decoration: none;
+       border-bottom-left-radius: 5px;
+
+       span{
+        font-size: 1.4em;
+        line-height: 50px;
+        text-align: center;
+      }
+    }
+  }
+
+
+  &.off-screen{
+    top: -$size-toolbox;
+  }
+  &.on-screen{
+    top: 0;
+  }
+
+  .color-samples{
+    width: 100%;
+  }
+  [class*="sample--"]{
+    width: calc(14% - 4px);
+    height: 22px;
+    border: 1px solid transparent;
+    margin: 1px 2px;
+    float: left;
+    transform: scale(.9);
+    cursor: pointer;
+
+    &:hover{
+      transform: scale(1);
+    }
+
+    &[class*="red"]{
+      background: #FF4351;
+    }
+    &[class*="pink"]{
+      background: #ED4694;
+    }
+    &[class*="purple"]{
+      background: #7B72E9;
+    }
+    &[class*="blue"]{
+      background: #1B9AF7;
+    }
+    &[class*="green"]{
+      background: #49E845;
+    }
+    &[class*="yellow"]{
+      background: #FFE93B;
+    }
+    &[class*="darkpurple"]{
+      background: #872795;
+    }
+
+    &[class*="darken-red"]{
+      background: darken(#FF4351, 37%);
+    }
+    &[class*="darken-pink"]{
+      background: darken(#ED4694, 37%);
+    }
+    &[class*="darken-purple"]{
+      background: darken(#7B72E9, 37%);
+    }
+    &[class*="darken-blue"]{
+      background: darken(#1B9AF7, 37%);
+    }
+    &[class*="darken-green"]{
+      background: darken(#49E845, 37%);
+    }
+    &[class*="darken-yellow"]{
+      background: darken(#FFE93B, 37%);
+    }
+    &[class*="darken-darkpurple"]{
+      background: darken(#872795, 37%);
+    }
+    
+  }
+
+  .shades-direction{
+    font-size: 2.8em;
+    margin-top: -10px;
+  }
+}
+
 /*------------------
 
   GENERIC CLASSES
 
   -------------------*/
+  .canvas{
+   &.to-right{
+    .c{
+      width: 2vw;
+      height: 100vh;
 
-  .c{
-    width: 2vw;
-    height: 100vh;
-    float: left;
-    position: relative;
-    z-index: 0;
-    transition: background .3s ease;
-    cursor: pointer;
-
-    &.expanded{
-      width: 100vw;
-      height: 86vh;
-      position: absolute;
-      left: 0;
-      z-index: 10;
-      transition: all .3s ease;
+      &.bigger{
+        width: 2.0408vw;
+      }
+      &.expanded{
+        width: 100vw;
+        height: 86vh;
+      }
     }
-
-    &.bigger{
-      width: 2.0408vw;
-    }
-
   }
+  &.to-bottom{
+    .c{
+      width: 100vw;
+      height: 2.1vh;
+      &.expanded{
+        width: 100vw;
+        height: 100vh;
+      }
+    }
+  }
+}
+.c{
+  float: left;
+  position: relative;
+  z-index: 0;
+  transition: background .3s ease;
+  cursor: pointer;
+
+  &.expanded{
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    transition: all .3s ease;
+  }
+
+
+
+}
 
 /*------------------
 
@@ -269,3 +447,23 @@
   li span{
     float: left;
   }
+
+//   .run{
+//     animation: run .6s ease infinite;
+//   }
+
+
+//   ------------------
+
+//   KEYFRAMES
+
+//   -------------------
+
+// @keyframes run{
+//   0%{
+//     transform: rotate(0deg)
+//   }
+//   100%{
+//     transform: rotate(360deg)
+//   }
+// }

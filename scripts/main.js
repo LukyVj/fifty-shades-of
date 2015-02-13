@@ -14,9 +14,9 @@ $(function(){
   // & http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
   setTimeout(function(){
     $('#twitter-widget-0').css({
-      'transform':'scale(.8)',
+      'transform':'scale(.7)',
       'width':'82px',
-      'margin-top':'.5em'});
+      'margin-bottom':'-5px'});
   }, 400);
 
 
@@ -25,69 +25,103 @@ $(function(){
   function _select(a){var b=document,c;a="undefined"===typeof a[0]?a:a[0];try{a.select();try{"undefined"===typeof a.dataset.mouseup&&(a.dataset.mouseup="true",a.addEventListener("mouseup",function(a){a.preventDefault()},!1))}catch(d){}}catch(e){window.getSelection?(c=window.getSelection(),b=b.createRange(),b.selectNodeContents(a),c.removeAllRanges(),c.addRange(b)):b.body.createTextRange&&(b=b.body.createTextRange(),b.moveToElementText(a),b.select())}};
 
 
-  function hexToRgb(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null; 
+
+  function toggleHelp(){
+    var trig = $('a[data-toggle="help"]');
+    trig.on('click',  function(e){
+      e.preventDefault();
+
+      if($('.helpzone').hasClass('off-screen')){
+        $('.helpzone').removeClass('off-screen').addClass('on-screen')
+      }
+      else{
+       $('.helpzone').removeClass('on-screen').addClass('off-screen')
+     }
+   });
+    expand();
+
   }
-  function rgb2hex(rgb){
-    rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-      return (rgb && rgb.length === 4) ? "#" +
-      ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
-      ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
-      ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+  function toggleTools(){
+   var trig = $('[data-toggle="toolbox"]');
+   trig.on('click',  function(){   
+    if($('.toolbox').hasClass('off-screen')){
+      $('.toolbox').removeClass('off-screen').addClass('on-screen')
     }
+    else{
+     $('.toolbox').removeClass('on-screen').addClass('off-screen')
+   }
+
+ });
+
+ }
 
 
-    function fiftyShadesOf($hex,$where){
+ toggleHelp();
+ toggleTools();
+
+ 
 
 
-      function decode($i){
-        var decoded =  hexToRgb($i).r+','+ hexToRgb($i).g+','+ hexToRgb($i).b; 
-        return 'rgb('+decoded+')';
-      } 
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null; 
+}
+function rgb2hex(rgb){
+  rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+    return (rgb && rgb.length === 4) ? "#" +
+    ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+    ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+    ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+  }
 
-      var r = decode($hex).replace('rgb(','').split(',')[0]%256;
-        var g = decode($hex).replace('rgb(','').split(',')[1]%256;
-          var b = decode($hex).replace('rgb(','').replace(')','').split(',')[2]%256;
 
-          var str="";
-          for(var i=0;i<50;i++)
-          {
-            r+=4;
-            g+=4;
-            b+=4;
-            str+="<div class='c' id='shade_"+(i+1)+"' style='background-color:rgb("+r+","+g+","+b+")'></div>"; 
-          }
-          $($where).html(str);
+  function fiftyShadesOf($hex,$where){
+
+
+    function decode($i){
+      var decoded =  hexToRgb($i).r+','+ hexToRgb($i).g+','+ hexToRgb($i).b; 
+      return 'rgb('+decoded+')';
+    } 
+
+    var r = decode($hex).replace('rgb(','').split(',')[0]%256;
+      var g = decode($hex).replace('rgb(','').split(',')[1]%256;
+        var b = decode($hex).replace('rgb(','').replace(')','').split(',')[2]%256;
+
+        var str="";
+        for(var i=0;i<50;i++)
+        {
+          r+=4;
+          g+=4;
+          b+=4;
+          str+="<div class='c' id='shade_"+(i+1)+"' style='background-color:rgb("+r+","+g+","+b+")'></div>"; 
         }
+        $($where).html(str);
+      }
 
 
 
-        function reveal($i){
+      function reveal($i){
 
+        var $twitter = $('a[href*="twitter"], a[href*="github"]');
+        var $sample = $('.colors .sample');
+        var $hex = $('.colors .hex');
+        var $rgb = $('.colors .rgb'); 
 
+        $twitter.css('color', $i)
+        $sample.css('background-color', $i)
+        $rgb.empty().append(' '+$i)
+        $hex.empty().append(' '+rgb2hex($i)) 
+      }
 
-
-          var $twitter = $('a[href*="twitter"], a[href*="github"]');
-          var $sample = $('.colors .sample');
-          var $hex = $('.colors .hex');
-          var $rgb = $('.colors .rgb'); 
-
-          $twitter.css('color', $i)
-          $sample.css('background-color', $i)
-          $rgb.empty().append(' '+$i)
-          $hex.empty().append(' '+rgb2hex($i)) 
-        }
-
-        function giveColor(){
-          $('.c').on('mouseover', function(){ 
-            reveal($(this).css('background-color'))
-          })
-        }
+      function giveColor(){
+        $('.c').on('mouseover', function(){ 
+          reveal($(this).css('background-color'))
+        })
+      }
   // Place the color first, then the zone to apply it
 
 
@@ -125,30 +159,49 @@ $(function(){
       prompt('copy:',word);
     }
     e.stopPropagation();
-  expand()
+    expand()
 
 
   });
 
+  function toolbox(){
+  function colorSamples(){
+    var env = $('.toolbox');
+    var it = env.find('[class*="sample--"]');
 
-  function urlToApp(){
-
-    var str = window.location.hash.substring(1, 7);
-
-    var colors = $('span[contenteditable]');
-    var text = colors.text();
-
-    if (str) {
-      fiftyShadesOf(str, '.canvas')
-      giveColor();
-      expand();
+    it.on('click', function(e){
+      e.preventDefault();
+      var i = $(this).css('background-color');
+      var c = rgb2hex(i);
+      fiftyShadesOf(c, '.canvas');
       brightOrDark('.c:nth-child(2)');
-      if (text != str) {
-        colors.text(str);
-      }
-    }
-
+      $('[contenteditable]').empty().append(c.replace("#",''));
+      $('.sample').css('background',c);
+      $('.hex').empty().append(c);
+      $('.rgb').empty().append(i);
+      giveColor()
+    });
   }
+
+  function shadeDirection(){
+    var it = $('[data-shade-direction]');
+    it.on('click', function(e){
+      e.preventDefault();
+      if($(this).attr('data-shade-direction') === "right"){
+        $('.canvas').addClass('to-right');
+        $('.canvas').removeClass('to-bottom')
+      }
+      else if($(this).attr('data-shade-direction') === "bottom"){
+        $('.canvas').addClass('to-bottom');
+        $('.canvas').removeClass('to-right')
+      }
+    })
+  }
+
+  colorSamples();
+  shadeDirection();
+}
+toolbox();
 
   function brightOrDark($el){
     var c = $($el);
@@ -163,14 +216,38 @@ $(function(){
     var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
 
     if (luma > 40) {
-     $('header, footer, [data-toggle], a:not(.helpzone a)').attr('style','color: #000 !important;text-shadow: 0 1px 0 rgba(255,255,255,.4)!important')
+     $('header, footer, [data-toggle], a:not(.helpzone a), a:not(.anti)').attr('style','color: #000 !important;text-shadow: 0 1px 0 rgba(255,255,255,.4)!important')
    }
    else{
-    $('header, footer, [data-toggle], a:not(.helpzone a)').attr('style','color: #fff !important;text-shadow: 0 1px 0 rgba(0,0,0,.6)!important')
+    $('header, footer, [data-toggle], a:not(.helpzone a), a:not(.anti)').attr('style','color: #fff !important;text-shadow: 0 1px 0 rgba(0,0,0,.6)!important')
   }
-    expand()
+  expand()
 
 }
+
+
+function urlToApp(){
+
+  var str = window.location.hash.substring(1, 7);
+
+  var colors = $('span[contenteditable]');
+  var text = colors.text();
+
+  if (str) {
+    fiftyShadesOf(str, '.canvas')
+    giveColor();
+    expand();
+    brightOrDark('.c:nth-child(2)');
+    if (text != str) {
+      colors.text(str);
+    }
+  }
+  expand()
+
+
+}
+
+
 
 urlToApp();
 $(window).on('hashchange', urlToApp);
@@ -179,22 +256,5 @@ if (!str) {
   window.location.hash = '000000';
 }
 
-function toggleHelp(){
-  var trig = $('a[data-toggle*="help"]');
-  trig.on('click',  function(e){
-    e.preventDefault();
 
-    if($('.helpzone').hasClass('off-screen')){
-      $('.helpzone').removeClass('off-screen').addClass('on-screen')
-    }
-    else{
-       $('.helpzone').removeClass('on-screen').addClass('off-screen')
-    }
-  });
-    expand()
-
-}
-
-toggleHelp()
-
-})
+});
